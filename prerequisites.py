@@ -5,7 +5,7 @@ mydb = mysql.connector.connect(host = 'localhost', user = 'user1', passwd = 'pas
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE users(user_id INT AUTO_INCREMENT PRIMARY KEY, user_name VARCHAR(50));")
+mycursor.execute("CREATE TABLE users(user_id INT AUTO_INCREMENT PRIMARY KEY,user_name VARCHAR(50) UNIQUE,email VARCHAR(50),passwd VARCHAR(64))")
 
 mycursor.execute("CREATE TABLE fruits(fruit_id INT AUTO_INCREMENT PRIMARY KEY, fruit_name VARCHAR(50) UNIQUE, fruit_price FLOAT);")
 

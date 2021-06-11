@@ -28,3 +28,8 @@ User can sign up where they'll be asked their email id and password to login aft
 Passwords are stored securely after encrypting them using sha256 hashing technique
 If a user forgets passwords they can request to change it. A code will be send to mail id given by the user to verify a code.
 After Code Verification, User Can change his/ her password
+
+
+Update : 12th June, 2021
+
+Added Email Verification While A User Registers.

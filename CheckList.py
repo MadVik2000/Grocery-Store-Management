@@ -1,6 +1,6 @@
 from Permissions import fetch_permission
 from Friends import check_friend, view_friends
-from User import check_user
+from User import check_user_id
 import mysql.connector, PrintLists
 
 mydb = mysql.connector.connect(
@@ -48,7 +48,7 @@ def check_list(id):
                         if int(cho) in [1,2]:
                             print("Enter Friend ID")
                             frnd_id = input()
-                            if check_user(int(frnd_id)):
+                            if check_user_id(int(frnd_id)):
                                 
                                 if check_friend(id, int(frnd_id)):
                                     

@@ -6,6 +6,16 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
+
+def check_user_id(id):
+    mycursor.execute('select user_id from users where user_id = %s;', [id])
+
+    if mycursor.fetchone():
+        return True
+
+    else:
+        return False
+
 def check_user(username):
     mycursor.execute(
         'select user_id from users where user_name = %s', [username])

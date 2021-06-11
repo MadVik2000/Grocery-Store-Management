@@ -2,6 +2,7 @@ import CreateList, Fruits, CheckList, Friends
 import Login
 import Signup
 import Password
+import GetUserId
 
 if __name__ == "__main__":
     print("Welcome!")
@@ -18,7 +19,10 @@ if __name__ == "__main__":
                 break
 
             if int(choice) == 1:
-                if Login.login():
+                username, to_cont = Login.login()
+                if to_cont:
+                        
+                    user_id = int(GetUserId.user_id(username))
                     while True:
                         print("1. Check Out The Fruits Available")
                         print("2. Create A New List")
@@ -26,26 +30,26 @@ if __name__ == "__main__":
                         print("4. Friends Section!")
                         print("5. Exit")
 
-                        choice = input("Enter Your Choice")
-                        if choice.isnumeric() and int(choice) in range(1, 6):
+                        cho = input("Enter Your Choice")
+                        if cho.isnumeric() and int(cho) in range(1, 6):
 
-                            if int(choice) == 5:
+                            if int(cho) == 5:
                                 break
 
-                            if int(choice) == 1:
+                            if int(cho) == 1:
                                 Fruits.show_fruits()
                                 continue
 
-                            if int(choice) == 2:
-                                CreateList.create_list(int(id))
+                            if int(cho) == 2:
+                                CreateList.create_list(user_id)
                                 continue
 
-                            if int(choice) == 3:
-                                CheckList.check_list(int(id))
+                            if int(cho) == 3:
+                                CheckList.check_list(user_id)
                                 continue
 
-                            if int(choice) == 4:
-                                Friends.main(int(id))
+                            if int(cho) == 4:
+                                Friends.main(user_id)
                                 continue
                         else:
                             print("Please Enter A Valid Choice")

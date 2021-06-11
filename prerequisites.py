@@ -14,6 +14,7 @@ mycursor.execute("CREATE TABLE lists(list_id INT AUTO_INCREMENT PRIMARY KEY,user
 mycursor.execute("CREATE TABLE list_items(items_id INT AUTO_INCREMENT PRIMARY KEY, list_id INT REFERENCES lists(list_id), fruit_id INT REFERENCES fruits(fruit_id), quantity INT);")
 
 mycursor.execute(
+    
     "CREATE TABLE requests(request_id INT AUTO_INCREMENT PRIMARY KEY, to_id INT references users(user_id),from_id INT references users(user_id));")
 
 mycursor.execute(

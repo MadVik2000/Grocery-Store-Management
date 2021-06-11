@@ -1,6 +1,7 @@
 import Encrypter
 import mysql.connector
 import User
+import CheckMail
 
 mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
 mycursor = mydb.cursor()
@@ -21,6 +22,10 @@ def signup():
             if not User.check_mail(mail_id):
                 print("Email Standards Not Met")
                 continue
+            
+            if not CheckMail.check_mail(mail_id):
+                print("Email Can't Be Verified! User Not Registered!")
+                break
 
             print("Please Enter Your Password")
             passwd = input()

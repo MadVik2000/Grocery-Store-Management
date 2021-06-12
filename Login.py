@@ -1,8 +1,7 @@
 import User,Encrypter
 
-def login():
-    print("Please Enter Your Username")
-    username = input()
+def login(username):
+
     if User.check_user(username):
         tries = 3
         while True:
@@ -13,14 +12,14 @@ def login():
 
                 print(f"Welcome {username}, You Have Logged Into Your Account!")
                 
-                return (username,True)
+                return True
 
             else:
                 tries -= 1
                 if tries == 0:
                     print("You Are Out Of Tries! Please Try To Log In After Some Time!")
                     
-                    return (username,False)
+                    return False
 
                 print(f"Wrong PassWord! {tries} More Tries Left")
 

@@ -19,8 +19,10 @@ if __name__ == "__main__":
                 break
 
             if int(choice) == 1:
-                username, to_cont = Login.login()
-                if to_cont:
+                print("Please Enter Your Username")
+                username = input()
+                
+                if Login.login(username):
                         
                     user_id = int(GetUserId.user_id(username))
                     while True:
@@ -56,7 +58,7 @@ if __name__ == "__main__":
 
             if int(choice) == 2:
                 Signup.signup()
-                continue
+                break
 
             if int(choice) == 3:
                 Password.forgot_passwd()

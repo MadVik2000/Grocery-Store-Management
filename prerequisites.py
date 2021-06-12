@@ -9,9 +9,9 @@ mycursor.execute("CREATE TABLE users(user_id INT AUTO_INCREMENT PRIMARY KEY,user
 
 mycursor.execute("CREATE TABLE fruits(fruit_id INT AUTO_INCREMENT PRIMARY KEY, fruit_name VARCHAR(50) UNIQUE, fruit_price FLOAT);")
 
-mycursor.execute("CREATE TABLE lists(list_id INT AUTO_INCREMENT PRIMARY KEY,user_id INT,list_name VARCHAR(50),FOREIGN KEY(user_id)REFERENCES users(user_id));")
+mycursor.execute("CREATE TABLE lists(list_id INT AUTO_INCREMENT PRIMARY KEY,user_id INT,list_name VARCHAR(50),FOREIGN KEY(user_id)REFERENCES users(user_id), list_price INT DEFAULT 0);")
 
-mycursor.execute("CREATE TABLE list_items(items_id INT AUTO_INCREMENT PRIMARY KEY, list_id INT REFERENCES lists(list_id), fruit_id INT REFERENCES fruits(fruit_id), quantity INT);")
+mycursor.execute("CREATE TABLE list_items(items_id INT AUTO_INCREMENT PRIMARY KEY, list_id INT REFERENCES lists(list_id), fruit_id INT REFERENCES fruits(fruit_id), quantity INT, item_price INT);")
 
 mycursor.execute(
     

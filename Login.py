@@ -1,6 +1,7 @@
 import User,Encrypter
 import os, time
 import getpass
+import GenerateSalt
 
 def login(username):
 
@@ -9,7 +10,10 @@ def login(username):
         while True:
             passwd = getpass.getpass('Please Enter Your Password\nNote That Your Password Would Not Be Visible While Typing\n')
             os.system("cls")
-            e_passwd = Encrypter.give_hex(passwd)
+            salt = GenerateSalt.generate_salt(username)
+            
+            e_passwd = Encrypter.give_hex(passwd, salt)
+            
             if User.check_pass(username, e_passwd):
 
                 print(f"Welcome {username}, You Have Logged Into Your Account!")

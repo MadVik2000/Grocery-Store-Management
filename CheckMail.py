@@ -1,4 +1,5 @@
 import CodeGenerator, SendMail
+import os, time
 
 def check_mail(mail_id):
     tries = 3
@@ -6,16 +7,21 @@ def check_mail(mail_id):
     SendMail.verify_mail(mail_id, code)
     
     print("We've Send A Code To Your Registered Email Id!")
+    
     while True:
         
         print("Please Enter The Code Here!")
         enter_code = input()
+        os.system('cls')
 
 
         if enter_code.isnumeric():
         
             if int(enter_code) == code:
                 print("Email Successfully Verified!")
+                time.sleep(2)
+                os.system('cls')
+                
                 return True
 
             else:

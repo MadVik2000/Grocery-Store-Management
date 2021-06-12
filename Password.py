@@ -1,6 +1,7 @@
 import mysql.connector
 import Encrypter,User,CodeGenerator,SendMail
 import os, time
+import GenerateSalt
 
 mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
 mycursor = mydb.cursor()
@@ -62,8 +63,9 @@ def change_password(username):
     print("Please Enter Your New Password!")
     passwd = input()
     os.system("cls")
+    salt = GenerateSalt.generate_salt(username)
     
-    e_pass = Encrypter.give_hex(passwd)
+    e_pass = Encrypter.give_hex(passwd, salt)
 
     mycursor.execute('update users set passwd = %s where user_name = %s', [e_pass, username])
     mydb.commit()

@@ -4,6 +4,7 @@ import User
 import CheckMail
 import os, time
 import getpass
+import GenerateSalt
 
 mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
 mycursor = mydb.cursor()
@@ -43,8 +44,9 @@ def signup():
             passwd = getpass.getpass(
                 'Please Enter Your Password\nNote That Your Password Would Not Be Visible While Typing\n')
             os.system("cls")
+            salt = GenerateSalt.generate_salt(username)
             
-            e_pass = Encrypter.give_hex(passwd)
+            e_pass = Encrypter.give_hex(passwd, salt)
 
             mycursor.execute("insert into users (user_name, email, passwd) values (%s, %s, %s)", [username, mail_id, e_pass])
             mydb.commit()

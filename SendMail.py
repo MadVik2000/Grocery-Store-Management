@@ -1,8 +1,11 @@
 import smtplib
+import getpass
 
 def send_mail(mail_id, code):
     my_mail = 'madvik143@gmail.com'
-    my_pass = input("Enter Your Mail Password")
+        
+    my_pass = getpass.getpass(
+        "Enter Your Mail Password\nNote That Your Password Would Not Be Visible While Typing\n")
 
     message = (
         f"Hey, You've Requested To Change Your Password as you've forgotten your password!\nPlease Enter This Code To Change Your Password:\n {code}\n\n Do Not Share This Code With Anyone Else! Ignore If You Haven't Requested To Change Your Password")

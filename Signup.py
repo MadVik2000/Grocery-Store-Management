@@ -3,6 +3,7 @@ import mysql.connector
 import User
 import CheckMail
 import os, time
+import getpass
 
 mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
 mycursor = mydb.cursor()
@@ -39,8 +40,8 @@ def signup():
                 
                 break
 
-            print("Please Enter Your Password")
-            passwd = input()
+            passwd = getpass.getpass(
+                'Please Enter Your Password\nNote That Your Password Would Not Be Visible While Typing\n')
             os.system("cls")
             
             e_pass = Encrypter.give_hex(passwd)

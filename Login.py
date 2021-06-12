@@ -1,13 +1,13 @@
 import User,Encrypter
 import os, time
+import getpass
 
 def login(username):
 
     if User.check_user(username):
         tries = 3
         while True:
-            print("Please Enter Your Password")
-            passwd = input()
+            passwd = getpass.getpass('Please Enter Your Password\nNote That Your Password Would Not Be Visible While Typing\n')
             os.system("cls")
             e_passwd = Encrypter.give_hex(passwd)
             if User.check_pass(username, e_passwd):
@@ -21,7 +21,7 @@ def login(username):
             else:
                 tries -= 1
                 if tries == 0:
-                    print("You Are Out Of Tries! Please Try To Log In After Some Time!")
+                    print("You Are Out Of Tries! Please Try To L̥og In After Some Time!")
                     time.sleep(1)
                     os.system("cls")
                     

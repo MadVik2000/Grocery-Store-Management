@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 
 mydb = mysql.connector.connect(
     host="localhost", user="user1", passwd="passwd", database='project')
@@ -10,6 +11,9 @@ def all_price(id):
     price = mycursor.fetchone()
     
     print(f"List With Id Number: {price[0]} and name: {price[1]} is priced at {price[2]}")
+    
+    input("Press Enter To Continue")
+    os.system("cls")
 
 
 def list_items_price(id):
@@ -18,3 +22,6 @@ def list_items_price(id):
     
     for index,price in enumerate(prices):
         print(f"{index + 1}. You have {price[0]} {price[1]} for a total price of {price[2]}.")
+        
+    input("Press Enter To Continue")
+    os.system("cls")

@@ -3,6 +3,7 @@ import Login
 import Signup
 import Password
 import GetUserId
+import os, time
 
 if __name__ == "__main__":
     print("Welcome!")
@@ -14,6 +15,8 @@ if __name__ == "__main__":
         
         choice = input("Please Enter Your Choice!")
         if choice.isnumeric() and int(choice) in range(1, 5):
+            
+            os.system("cls")
 
             if int(choice) == 4:
                 break
@@ -21,6 +24,7 @@ if __name__ == "__main__":
             if int(choice) == 1:
                 print("Please Enter Your Username")
                 username = input()
+                os.system("cls")
                 
                 if Login.login(username):
                         
@@ -34,6 +38,8 @@ if __name__ == "__main__":
 
                         cho = input("Enter Your Choice")
                         if cho.isnumeric() and int(cho) in range(1, 6):
+                            
+                            os.system("cls")
 
                             if int(cho) == 5:
                                 break
@@ -53,8 +59,11 @@ if __name__ == "__main__":
                             if int(cho) == 4:
                                 Friends.main(user_id)
                                 continue
+                            
                         else:
                             print("Please Enter A Valid Choice")
+                            time.sleep(1)
+                            os.system("cls")
 
             if int(choice) == 2:
                 Signup.signup()
@@ -66,4 +75,6 @@ if __name__ == "__main__":
 
         else:
             print("Wrong Choice!")
+            time.sleep(1)
+            os.system("cls")
         

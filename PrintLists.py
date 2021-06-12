@@ -1,4 +1,5 @@
 import mysql.connector
+import os,time
 
 mydb = mysql.connector.connect(
     host="localhost", user="user1", passwd="passwd", database='project')
@@ -12,12 +13,17 @@ def print_all_lists(id):
     
     if not result:
         print("No Lists Found!")
+        time.sleep(1)
+        os.system("cls")
         return
     
     print("%-20s %-20s %-20s" % ('List Id', 'List Name', 'List Price'))
     
     for res in result:
         print("%-20s %-20s %-20s" %(res[0], res[1], res[2]))
+        
+    input("Press Enter To Continue")
+    os.system("cls")
         
 def print_one_list(id, list_id):
     
@@ -27,10 +33,15 @@ def print_one_list(id, list_id):
     
     if not result:
         print("No List Found with the Particular Id")
+        time.sleep(1)
+        os.system("cls")
         return
 
     print("%-12s %-12s %-12s" % ('Fruit Name', 'Quantity', 'Price'))
 
     for res in result:
         print("%-12s %-12s %-12s" % (res[0], res[1], res[2]))
+        
+    input("Press Enter To Continue")
+    os.system("cls")
     

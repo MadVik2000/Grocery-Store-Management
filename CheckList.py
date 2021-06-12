@@ -2,6 +2,7 @@ from Permissions import fetch_permission
 from Friends import check_friend, view_friends
 from User import check_user_id
 import mysql.connector, PrintLists
+import os, time
 
 mydb = mysql.connector.connect(
     host="localhost", user="user1", passwd="passwd", database='project')
@@ -21,6 +22,8 @@ def check_list(id):
         print("4. Exit")
 
         choice = input("Please Enter Your Choice!")
+        os.system("cls")
+        
         if choice.isnumeric() and int(choice) in range(1, 5):
             if int(choice) == 4:
                 break
@@ -36,6 +39,8 @@ def check_list(id):
                     print("3. See All Friends")
                     print("4. Exit")
                     cho = input()
+                    os.system("cls")
+                    
                     if cho.isnumeric() and int(cho) in range(1,5):
                         
                         if int(cho) == 4:
@@ -48,6 +53,8 @@ def check_list(id):
                         if int(cho) in [1,2]:
                             print("Enter Friend ID")
                             frnd_id = input()
+                            os.system("cls")
+                            
                             if check_user_id(int(frnd_id)):
                                 
                                 if check_friend(id, int(frnd_id)):
@@ -55,6 +62,9 @@ def check_list(id):
                                     perm = fetch_permission(id, int(frnd_id))
                                     if perm == 'n':
                                         print("User Has Disabled Viewing His/Her Profile Lists")
+                                        time.sleep(1)
+                                        os.system("cls")
+                                        
                                         continue
                                         
                                     else:
@@ -65,33 +75,49 @@ def check_list(id):
                                         elif int(cho) == 1:
                                             print("Enter The List Id Of The List You Want To See")
                                             list_id = input()
+                                            os.system("cls")
+                                            
                                             if list_id.isnumeric() and int(list_id) in range(1, max_id+1):
                                                 PrintLists.print_one_list(int(frnd_id), int(list_id))
                                                 continue
                                 
                                 else:
                                     print("You Are Not Friends With This User")
+                                    time.sleep(1)
+                                    os.system("cls")
+                                    
                                     continue
                                 
                             else:
                                 print("User Doesn't Exists!")
+                                time.sleep(1)
+                                os.system("cls")
+                                
                                 continue
                         
                     else:
                         print("Wrong Choice!")
+                        time.sleep(1)
+                        os.system("cls")
                             
                 
 
             if int(choice) == 3:
                 while True:
                     list_id = input("Please Enter List_Id You Want To See")
+                    os.system("cls")
+                    
                     if list_id.isnumeric() and int(list_id) in range(1, max_id+1):
                         PrintLists.print_one_list(id, list_id)
                         break
 
                     print("Wrong List Id")
+                    time.sleep(1)
+                    os.system("cls")
 
                 continue
             
         else:
             print("Wrong Choice!")
+            time.sleep(1)
+            os.system("cls")

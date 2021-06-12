@@ -1,5 +1,6 @@
 import mysql.connector
 import Encrypter,User,CodeGenerator,SendMail
+import os, time
 
 mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
 mycursor = mydb.cursor()
@@ -7,12 +8,12 @@ mycursor = mydb.cursor()
 def forgot_passwd():
     print("Please Enter Your UserName")
     username = input()
+    os.system("cls")
 
     if User.check_user(username):
 
         tries = 3
-        mycursor.execute(
-            'select email from users where user_name = %s', [username])
+        mycursor.execute('select email from users where user_name = %s', [username])
         mail_id = mycursor.fetchone()[0]
         code = CodeGenerator.gen_code()
 
@@ -21,6 +22,7 @@ def forgot_passwd():
         while True:
             print("Please Enter The Code Here!")
             enter_code = input()
+            os.system("cls")
 
             if enter_code.isnumeric():
 
@@ -30,29 +32,42 @@ def forgot_passwd():
 
                 else:
                     print("You've Entered Wrong Code!")
-
+                
             else:
                 print("You've Entered Wrong Code")
+                
             tries -= 1
             if tries == 0:
                 print("Maximum Number Of Tries Reached!")
                 print("Try Later")
+                time.sleep(1)
+                os.system("cls")
+                
                 break
 
             print(f"Wrong Code! You've {tries} left")
+            time.sleep(1)
+            os.system("cls")
+            
             continue
 
     else:
         print("No User Exists")
+        time.sleep(1)
+        os.system("cls")
+        
 
 
 def change_password(username):
     print("Please Enter Your New Password!")
     passwd = input()
+    os.system("cls")
+    
     e_pass = Encrypter.give_hex(passwd)
 
-    mycursor.execute('update users set passwd = %s where user_name = %s', [
-                     e_pass, username])
+    mycursor.execute('update users set passwd = %s where user_name = %s', [e_pass, username])
     mydb.commit()
     print("Password Changed Successfully!")
     print("Please Log In To Proceed!")
+    time.sleep(1)
+    os.system("cls")

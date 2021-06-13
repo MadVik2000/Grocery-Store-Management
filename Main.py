@@ -7,7 +7,8 @@ import os, time
 import keyboard
 
 if __name__ == "__main__":
-    print("Welcome!")
+    os.system('cls')
+    print("Welcome To The List Management System!")
     while True:
         print("1. Login")
         print("2. Signup")

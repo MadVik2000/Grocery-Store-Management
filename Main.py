@@ -4,7 +4,6 @@ import Signup
 import Password
 import GetUserId
 import os, time
-import keyboard
 
 if __name__ == "__main__":
     os.system('cls')

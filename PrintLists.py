@@ -1,15 +1,11 @@
 import mysql.connector
 import os,time
-
-mydb = mysql.connector.connect(
-    host="localhost", user="user1", passwd="passwd", database='project')
-
-mycursor = mydb.cursor()
+import db
 
 def print_all_lists(id):
     
-    mycursor.execute('select list_id, list_name, list_price from lists where user_id = %s',[id])
-    result = mycursor.fetchall()
+    db.mycursor.execute('select list_id, list_name, list_price from lists where user_id = %s',[id])
+    result = db.mycursor.fetchall()
     
     if not result:
         print("No Lists Found!")
@@ -27,12 +23,12 @@ def print_all_lists(id):
         
 def print_one_list(id, list_id):
     
-    mycursor.execute('select f.fruit_name, li.quantity, li.item_price from list_items li join fruits f on li.fruit_id = f.fruit_id join lists l on li.list_id = l.list_id join users u on l.user_id = u.user_id where li.list_id = %s and u.user_id = %s', [list_id, id])
+    db.mycursor.execute('select f.fruit_name, li.quantity, li.item_price from list_items li join fruits f on li.fruit_id = f.fruit_id join lists l on li.list_id = l.list_id where li.list_id = %s and l.user_id = %s', [int(list_id), int(id)])
     
-    result = mycursor.fetchall()
+    result = db.mycursor.fetchall()
     
     if not result:
-        print("No List Found with the Particular Id")
+        print("List Contains No Items!")
         time.sleep(1)
         os.system("cls")
         return

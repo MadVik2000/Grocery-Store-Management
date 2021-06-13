@@ -1,10 +1,7 @@
 import mysql.connector
-
-mydb = mysql.connector.connect(
-    host='localhost', user='user1', passwd='passwd', database='project')
-mycursor = mydb.cursor()
+import db
 
 def user_id(username):
-    mycursor.execute('select user_id from users where user_name = %s', [username])
+    db.mycursor.execute('select user_id from users where user_name = %s', [username])
     
-    return mycursor.fetchone()[0]
+    return db.mycursor.fetchone()[0]

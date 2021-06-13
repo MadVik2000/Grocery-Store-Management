@@ -1,14 +1,10 @@
 import mysql.connector
 import os
-
-mydb = mysql.connector.connect(
-    host="localhost", user="user1", passwd="passwd", database='project')
-
-mycursor = mydb.cursor()
+import db
 
 def show_fruits():
-    mycursor.execute('select * from fruits;')
-    result = mycursor.fetchall()
+    db.mycursor.execute('select * from fruits;')
+    result = db.mycursor.fetchall()
 
     print("%-8s %-12s %-12s" % ('Fruit ID', 'Fruit Name', 'Fruit Price'))
     for res in result:

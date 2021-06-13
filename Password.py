@@ -2,9 +2,7 @@ import mysql.connector
 import Encrypter,User,CodeGenerator,SendMail
 import os, time
 import GenerateSalt
-
-mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
-mycursor = mydb.cursor()
+import db
 
 def forgot_passwd():
     print("Please Enter Your UserName")
@@ -14,8 +12,8 @@ def forgot_passwd():
     if User.check_user(username):
 
         tries = 3
-        mycursor.execute('select email from users where user_name = %s', [username])
-        mail_id = mycursor.fetchone()[0]
+        db.mycursor.execute('select email from users where user_name = %s', [username])
+        mail_id = db.mycursor.fetchone()[0]
         code = CodeGenerator.gen_code()
 
         SendMail.send_mail(mail_id, code)
@@ -67,8 +65,8 @@ def change_password(username):
     
     e_pass = Encrypter.give_hex(passwd, salt)
 
-    mycursor.execute('update users set passwd = %s where user_name = %s', [e_pass, username])
-    mydb.commit()
+    db.mycursor.execute('update users set passwd = %s where user_name = %s', [e_pass, username])
+    db.mydb.commit()
     print("Password Changed Successfully!")
     print("Please Log In To Proceed!")
     time.sleep(1)

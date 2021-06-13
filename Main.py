@@ -4,6 +4,7 @@ import Signup
 import Password
 import GetUserId
 import os, time
+import keyboard
 
 if __name__ == "__main__":
     print("Welcome!")
@@ -23,6 +24,7 @@ if __name__ == "__main__":
 
             if int(choice) == 1:
                 print("Please Enter Your Username")
+                    
                 username = input()
                 os.system("cls")
                 
@@ -37,6 +39,7 @@ if __name__ == "__main__":
                         print("5. Exit")
 
                         cho = input("Enter Your Choice")
+                        os.system('cls')
                         if cho.isnumeric() and int(cho) in range(1, 6):
                             
                             os.system("cls")
@@ -67,7 +70,7 @@ if __name__ == "__main__":
 
             if int(choice) == 2:
                 Signup.signup()
-                break
+                continue
 
             if int(choice) == 3:
                 Password.forgot_passwd()

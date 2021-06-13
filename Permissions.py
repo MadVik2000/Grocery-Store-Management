@@ -1,10 +1,7 @@
-import mysql.connector
+from User import check_user_id
 import Friends
 import os,time
-
-mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
-
-mycursor = mydb.cursor()
+import db
 
 
 def change_permission(id):
@@ -32,21 +29,24 @@ def change_permission(id):
                     frnd_id = input()
                     os.system("cls")
                     
+                    if not check_user_id(int(frnd_id)):
+                        print("No User Exists With That ID")
+                        return
+                    
                     if Friends.check_friend(id, frnd_id):
                         break
 
                     print("Not Friends With The Given User Id")
                     time.sleep(1)
                     os.system("cls")
-                    
-                    break
+                    return
 
                 while True:
                     print("Press Y for Enable and N for Disable")
                     cho = input().lower()
                     if cho in ['y', 'n']:
-                        mycursor.execute('update friends set permission = %s where friend_one = %s and friend_two = %s', [cho, id, frnd_id])
-                        mydb.commit()
+                        db.mycursor.execute('update friends set permission = %s where friend_one = %s and friend_two = %s', [cho, id, frnd_id])
+                        db.mydb.commit()
                         print("Permission Updated!")
                         time.sleep(1)
                         os.system("cls")
@@ -67,8 +67,11 @@ def change_permission(id):
                     os.system("cls")
                     
                     if cho in ['y', 'n']:
-                        mycursor.execute('update friends set permission = %s where friend_one = %s', [cho, id])
-                        mydb.commit()
+                        db.mycursor.execute('update friends set permission = %s where friend_one = %s', [cho, id])
+                        db.mydb.commit()
+                        
+                        db.mycursor.execute('update users set default_permission = %s where user_id = %s', [cho, id])
+                        db.mydb.commit()
                         print("Permissions Updated Successfully!")
                         time.sleep(1)
                         os.system("cls")
@@ -86,7 +89,7 @@ def change_permission(id):
             os.system("cls")
 
 def fetch_permission(id, see_id):
-    mycursor.execute('select permission from friends where friend_one = %s and friend_two = %s', [see_id, id])
-    result = mycursor.fetchone()[0]
+    db.mycursor.execute('select permission from friends where friend_one = %s and friend_two = %s', [see_id, id])
+    result = db.mycursor.fetchone()[0]
     
     return result

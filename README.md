@@ -33,3 +33,15 @@ After Code Verification, User Can change his/ her password
 Update : 12th June, 2021
 
 Added Email Verification While A User Registers.
+
+Update : 13th June, 2021
+
+Major Bug Fixes:
+Added default_permission to users table so they can change permissions from there for friends
+Fixed Multiple Screens Where User Could Not Go Back and Was stuck in a loob
+Fixed Issues Where Menu Was Not Shown after a choice
+Added Feature where two users can't have same email id
+Added feature where a list should always have a name
+and many more...
+
+THIS IS A MAJOR MILESTONE WHERE BASIC PROJECT IS COMPLETED AND FROM HERE ADDITIONAL FUNCTIONALITIES WILL BE ADDED REGULARLY

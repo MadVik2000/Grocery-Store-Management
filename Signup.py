@@ -5,9 +5,7 @@ import CheckMail
 import os, time
 import getpass
 import GenerateSalt
-
-mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
-mycursor = mydb.cursor()
+import db
 
 def signup():
     while True:
@@ -28,7 +26,6 @@ def signup():
             os.system("cls")
 
             if not User.check_mail(mail_id):
-                print("Email Standards Not Met")
                 time.sleep(1)
                 os.system("cls")
                 
@@ -48,8 +45,8 @@ def signup():
             
             e_pass = Encrypter.give_hex(passwd, salt)
 
-            mycursor.execute("insert into users (user_name, email, passwd) values (%s, %s, %s)", [username, mail_id, e_pass])
-            mydb.commit()
+            db.mycursor.execute("insert into users (user_name, email, passwd) values (%s, %s, %s)", [username, mail_id, e_pass])
+            db.mydb.commit()
             print("You've Successfully Signed Up!\nPlease Login To Proceed!")
             time.sleep(1)
             os.system("cls")

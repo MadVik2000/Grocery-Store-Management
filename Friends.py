@@ -1,14 +1,13 @@
 import mysql.connector
 import Requests,Permissions
 import os, time
+import db
 
-mydb = mysql.connector.connect(host='localhost', user='user1', passwd='passwd', database='project')
-mycursor = mydb.cursor()
 
 def view_friends(id):
-    mycursor.execute(
+    db.mycursor.execute(
         'select * from friends where friend_one = %s', [id])
-    result = mycursor.fetchall()
+    result = db.mycursor.fetchall()
 
     if not result:
         print("No Friends To Show!")
@@ -18,8 +17,8 @@ def view_friends(id):
 
     print("%-5s %-12s %-8s" % ('ID', 'NAME', "PERMISSION TO VIEW LISTS"))
     for res in result:
-        mycursor.execute('select user_name from users where user_id = %s', [res[2]])
-        frnd = mycursor.fetchone()[0]
+        db.mycursor.execute('select user_name from users where user_id = %s', [res[2]])
+        frnd = db.mycursor.fetchone()[0]
         print("%-5s %-12s %-8s" % (res[2], frnd, res[3]))
         
     input("Press Enter To Continue")
@@ -27,15 +26,23 @@ def view_friends(id):
 
 
 def check_friend(id, frnd_id):
-    mycursor.execute(
+    db.mycursor.execute(
         'select * from friends where friend_one = %s and friend_two = %s', [id, frnd_id])
 
-    result = mycursor.fetchone()
+    result = db.mycursor.fetchone()
     if not result:
         return False
 
     else:
         return True
+    
+def check_friend_list(frnd_id, list_id):
+    db.mycursor.execute("select * from lists where user_id = %s and list_id = %s", [frnd_id, list_id])
+    if db.mycursor.fetchone():
+        
+        return True
+    
+    return False
 
 def main(id):
     while True:
@@ -46,37 +53,36 @@ def main(id):
         print("5. Change Friend Permission")
         print("6. Exit")
         
-        while True:
-            choice = input("Please Enter Your Choice!")
-            os.system("cls")
-            
-            if choice.isnumeric() and int(choice) in range(1,7):
-                if int(choice) == 6:
-                    return
-                
-                if int(choice) == 1:
-                    view_friends(id)
-                    continue               
-                
-                if int(choice) == 2:
-                    Requests.view_requests(id)
-                    continue
-                    
-                if int(choice) == 3:
-                    Requests.request_approval(id)
-                    continue
+        choice = input("Please Enter Your Choice!")
+        os.system("cls")
         
-                if int(choice) == 4:
-                    Requests.send_request(id)
-                    continue
-                                    
-                if int(choice) == 5:
-                    Permissions.change_permission(id)
-                    continue
-                
-                break
+        if choice.isnumeric() and int(choice) in range(1,7):
+            if int(choice) == 6:
+                return
             
-            print("Wrong Choice!")
-            time.sleep(1)
-            os.system("cls")
+            if int(choice) == 1:
+                view_friends(id)
+                continue               
+            
+            if int(choice) == 2:
+                Requests.view_requests(id)
+                continue
+                
+            if int(choice) == 3:
+                Requests.request_approval(id)
+                continue
+    
+            if int(choice) == 4:
+                Requests.send_request(id)
+                continue
+                                
+            if int(choice) == 5:
+                Permissions.change_permission(id)
+                continue
+            
+            break
+            
+        print("Wrong Choice!")
+        time.sleep(1)
+        os.system("cls")
             

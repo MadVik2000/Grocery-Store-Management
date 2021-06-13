@@ -1,20 +1,20 @@
 from Permissions import fetch_permission
-from Friends import check_friend, view_friends
+from Friends import check_friend, check_friend_list, view_friends
 from User import check_user_id
-import mysql.connector, PrintLists
+import PrintLists
 import os, time
+import db
 
-mydb = mysql.connector.connect(
-    host="localhost", user="user1", passwd="passwd", database='project')
-
-mycursor = mydb.cursor()
-
+def list_present(list_id):
+    db.mycursor.execute('select * from lists where list_id = %s', [list_id])
+    if db.mycursor.fetchone():
+        return True
+    
+    return False
+    
 
 def check_list(id):
-
-    mycursor.execute('select max(list_id) from lists')
-    max_id = mycursor.fetchone()[0]
-
+    
     while True:
         print("1. Check List Names")
         print("2. Check Friend's Lists")
@@ -55,6 +55,12 @@ def check_list(id):
                             frnd_id = input()
                             os.system("cls")
                             
+                            if int(frnd_id) == id:
+                                print("Can't Check Own Records In Friends Section!")
+                                time.sleep(1)
+                                os.system('cls')
+                                continue
+                            
                             if check_user_id(int(frnd_id)):
                                 
                                 if check_friend(id, int(frnd_id)):
@@ -77,8 +83,27 @@ def check_list(id):
                                             list_id = input()
                                             os.system("cls")
                                             
-                                            if list_id.isnumeric() and int(list_id) in range(1, max_id+1):
-                                                PrintLists.print_one_list(int(frnd_id), int(list_id))
+                                            if check_friend_list(int(frnd_id), int(list_id)):
+                                            
+                                                if list_id.isnumeric():
+                                                    if list_present(int(list_id)):
+                                                        PrintLists.print_one_list(int(frnd_id), int(list_id))
+                                                        continue
+                                                    
+                                                    print("List Not Available!")
+                                                    continue
+                                                
+                                            else:
+                                                
+                                                if not list_present(int(list_id)):
+                                                    print("List Not Available!")
+                                                    time.sleep(1)
+                                                    os.system("cls")
+                                                    continue
+                                                
+                                                print("This List Id Doesn't Belongs To Your Friend!")
+                                                time.sleep(1)
+                                                os.system("cls")
                                                 continue
                                 
                                 else:
@@ -107,8 +132,14 @@ def check_list(id):
                     list_id = input("Please Enter List_Id You Want To See")
                     os.system("cls")
                     
-                    if list_id.isnumeric() and int(list_id) in range(1, max_id+1):
-                        PrintLists.print_one_list(id, list_id)
+                    if list_id.isnumeric():
+                        if list_present(int(list_id)):
+                            PrintLists.print_one_list(id, list_id)
+                            break
+                        
+                        print("List Not Available!")
+                        time.sleep(1)
+                        os.system("cls")
                         break
 
                     print("Wrong List Id")

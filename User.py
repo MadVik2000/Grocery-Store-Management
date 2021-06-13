@@ -1,25 +1,19 @@
 import mysql.connector
 import re
-
-mydb = mysql.connector.connect(
-    host="localhost", user="user1", passwd="passwd", database='project')
-
-mycursor = mydb.cursor()
-
-
+import db
 def check_user_id(id):
-    mycursor.execute('select user_id from users where user_id = %s;', [id])
+    db.mycursor.execute('select user_id from users where user_id = %s;', [id])
 
-    if mycursor.fetchone():
+    if db.mycursor.fetchone():
         return True
 
     else:
         return False
 
 def check_user(username):
-    mycursor.execute(
+    db.mycursor.execute(
         'select user_id from users where user_name = %s', [username])
-    result = mycursor.fetchone()
+    result = db.mycursor.fetchone()
     if result:
         return True
 
@@ -27,9 +21,9 @@ def check_user(username):
 
 
 def check_pass(username, passwd):
-    mycursor.execute(
+    db.mycursor.execute(
         'select passwd from users where user_name = %s', [username])
-    result = mycursor.fetchone()[0]
+    result = db.mycursor.fetchone()[0]
     if result == passwd:
         return True
 
@@ -38,8 +32,15 @@ def check_pass(username, passwd):
 
 def check_mail(mail_id):
 
-    pattern = r'[a-zA-Z0-9]+@[a-zA-Z]+\.(com|edu|net|org)'
+    pattern = r'[a-zA-Z0-9.]+@[a-zA-Z]+\.(com|edu|net|org)'
     if re.match(pattern, mail_id):
+        
+        db.mycursor.execute('select email from users where email = %s', [mail_id])
+        if db.mycursor.fetchone():
+            print("Email Already Exists!")
+            return False
+        
         return True
-
+    
+    print("Email Standards Not Met")
     return False

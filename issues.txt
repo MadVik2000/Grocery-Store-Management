@@ -1,5 +1,1 @@
-Whenever A User Signs Up, He/She isnt't able to directly login afterwards! Code Needs to be re run in order for the user to login
-
-
-After an item is added to the list, the pricings are updated in both lists and list_items and so happens every time after adding a list.
-But after first time, the pricing shown remains always same even if it has changed in the database.
+All Issues Resolved Found Till Date

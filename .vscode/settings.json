@@ -1,0 +1,6 @@
+{
+    "diffEditor.maxComputationTime": 0,
+    "python.languageServer": "Pylance",
+    "python.analysis.memory.keepLibraryAst": true,
+    "python.analysis.useLibraryCodeForTypes": true
+}

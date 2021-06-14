@@ -24,34 +24,32 @@ db.mycursor.execute(
 for item in Items.ITEMS:
     db.mycursor.execute('insert into categories (category_name) value(%s)', [item])
     
-db.mydb.commit()
+
     
 myquery ='insert into items (category_id, item_name, item_price) values (%s, %s, %s)'
 
 db.mycursor.executemany(myquery,Items.FRUITS)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.RICEGRAINPULSES)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.SALTSUGARSPICES)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.FLOURSEMOLINAPROCESSEDGRAINS)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.GROUNDSPICES)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.DAIRYFROZENFOOD)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.BREADPOULTRYCEREALSSNACKS)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.BEVERAGES)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.ACCOMPANIMENTS)
-db.mydb.commit()
-db.mycursor.executemany(myquery,Items.SWEETSDRYFRUITS)
-db.mydb.commit()
-db.mycursor.executemany(myquery,Items.BAKINGDESSERTPREPERATION)
-db.mydb.commit()
-db.mycursor.executemany(myquery, Items.OILGHEE)
-db.mydb.commit()
 
+db.mycursor.executemany(myquery, Items.RICEGRAINPULSES)
+
+db.mycursor.executemany(myquery, Items.SALTSUGARSPICES)
+
+db.mycursor.executemany(myquery, Items.FLOURSEMOLINAPROCESSEDGRAINS)
+
+db.mycursor.executemany(myquery, Items.GROUNDSPICES)
+
+db.mycursor.executemany(myquery, Items.DAIRYFROZENFOOD)
+
+db.mycursor.executemany(myquery, Items.BREADPOULTRYCEREALSSNACKS)
+
+db.mycursor.executemany(myquery, Items.BEVERAGES)
+
+db.mycursor.executemany(myquery, Items.ACCOMPANIMENTS)
+
+db.mycursor.executemany(myquery,Items.SWEETSDRYFRUITS)
+
+db.mycursor.executemany(myquery,Items.BAKINGDESSERTPREPERATION)
+
+db.mycursor.executemany(myquery, Items.OILGHEE)
     
 db.mydb.commit()

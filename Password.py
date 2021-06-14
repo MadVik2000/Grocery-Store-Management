@@ -1,3 +1,4 @@
+import getpass
 import Encrypter,User,CodeGenerator,SendMail
 import os, time
 import GenerateSalt
@@ -57,8 +58,7 @@ def forgot_passwd():
 
 
 def change_password(username):
-    print("Please Enter Your New Password!")
-    passwd = input()
+    passwd = getpass.getpass('Please Enter Your Password\nNote That Your Password Would Not Be Visible While Typing\n')
     os.system("cls")
     salt = GenerateSalt.generate_salt(username)
     

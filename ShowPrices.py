@@ -12,7 +12,7 @@ def all_price(id):
 
 
 def list_items_price(id):
-    db.mycursor.execute('select li.quantity, i.item_name, li.item_price from list_items li join item i on li.item_id = i.item_id where li.list_id = %s;', [int(id)])
+    db.mycursor.execute('select li.quantity, i.item_name, li.item_price from list_items li join items i on li.item_id = i.item_id where li.list_id = %s;', [int(id)])
     prices = db.mycursor.fetchall()
     
     for index,price in enumerate(prices):

@@ -22,7 +22,7 @@ def print_all_lists(id):
         
 def print_one_list(id, list_id):
     
-    db.mycursor.execute('select i.item_name, li.quantity, li.item_price from list_items li join items i on li.item_id = i.item__id join lists l on li.list_id = l.list_id where li.list_id = %s and l.user_id = %s', [int(list_id), int(id)])
+    db.mycursor.execute('select i.item_name, li.quantity, li.item_price from list_items li join items i on li.item_id = i.item_id join lists l on li.list_id = l.list_id where li.list_id = %s and l.user_id = %s', [int(list_id), int(id)])
     
     result = db.mycursor.fetchall()
     

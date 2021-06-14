@@ -1,5 +1,5 @@
-# List-Management
-List Management Project Developed For MySql Training With Python
+# Grocery-Management
+Grocery Store Management Project Developed For MySql Training With Python
 
 I made this list management project to understand how python and mysql works together and to get a better understanding of how we query databases in mysql
 through python mysql connector.

@@ -1,4 +1,3 @@
-import mysql.connector
 import User
 import os,time
 import db

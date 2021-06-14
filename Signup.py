@@ -1,5 +1,4 @@
 import Encrypter
-import mysql.connector
 import User
 import CheckMail
 import os, time

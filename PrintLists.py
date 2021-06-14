@@ -1,4 +1,3 @@
-import mysql.connector
 import os,time
 import db
 
@@ -23,7 +22,7 @@ def print_all_lists(id):
         
 def print_one_list(id, list_id):
     
-    db.mycursor.execute('select f.fruit_name, li.quantity, li.item_price from list_items li join fruits f on li.fruit_id = f.fruit_id join lists l on li.list_id = l.list_id where li.list_id = %s and l.user_id = %s', [int(list_id), int(id)])
+    db.mycursor.execute('select i.item_name, li.quantity, li.item_price from list_items li join items i on li.item_id = i.item__id join lists l on li.list_id = l.list_id where li.list_id = %s and l.user_id = %s', [int(list_id), int(id)])
     
     result = db.mycursor.fetchall()
     
@@ -33,7 +32,7 @@ def print_one_list(id, list_id):
         os.system("cls")
         return
 
-    print("%-12s %-12s %-12s" % ('Fruit Name', 'Quantity', 'Price'))
+    print("%-12s %-12s %-12s" % ('Item Name', 'Quantity', 'Price'))
 
     for res in result:
         print("%-12s %-12s %-12s" % (res[0], res[1], res[2]))

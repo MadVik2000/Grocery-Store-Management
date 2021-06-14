@@ -1,4 +1,4 @@
-import mysql.connector,Fruits
+import Categories
 import ShowPrices
 import os, time
 import db
@@ -44,35 +44,40 @@ def create_list(id):
 
 def enter_elem_list(id):
 
-    db.mycursor.execute('select max(fruit_id) from fruits;')
+    db.mycursor.execute('select max(item_id) from items;')
     max_id = db.mycursor.fetchone()[0]
 
     while True:
-        print("1. Show Fruits")
-        print("2. Add A Fruit To The List")
-        print("3. Show Total Price Of All Items In The List")
-        print("4. Show Total Price For Every Item")
-        print("5. Exit")
+        print("1. Show Categories")
+        print("2. Show Items Related To A Category")
+        print("3. Add An Item To The List")
+        print("4. Show Total Price Of All Items In The List")
+        print("5. Show Total Price For Every Item")
+        print("6. Exit")
         choice = input("Please Enter Your Choice")
         os.system("cls")
         
-        if choice.isnumeric() and int(choice) in range(1, 6):
-            if int(choice) == 5:
+        if choice.isnumeric() and int(choice) in range(1, 7):
+            if int(choice) == 6:
                 break
 
             if int(choice) == 1:
-                Fruits.show_fruits()
+                Categories.show_category()
+                continue
+            
+            if int(choice) == 2:
+                Categories.show_items()
                 continue
 
-            if int(choice) == 2:
+            if int(choice) == 3:
 
                 while True:
-                    id_choice = input("Please Enter Fruit Id Of The Fruit You Want To Purchase")
+                    id_choice = input("Please Enter Item Id Of The Item You Want To Purchase")
                     os.system("cls")
                     
                     if id_choice.isnumeric() and int(id_choice) in range(1, max_id+1):
                         
-                        db.mycursor.execute('select fruit_price from fruits where fruit_id = %s', [int(id_choice)])
+                        db.mycursor.execute('select item_price from items where item_id = %s', [int(id_choice)])
                         price = db.mycursor.fetchone()[0]
 
                         while True:
@@ -92,11 +97,11 @@ def enter_elem_list(id):
                                     os.system("cls")
                                     continue
                                 
-                                db.mycursor.execute('select * from list_items where list_id = %s and fruit_id = %s', [id, int(id_choice)])
+                                db.mycursor.execute('select * from list_items where list_id = %s and item_id = %s', [id, int(id_choice)])
                                 result = db.mycursor.fetchone()
                                 if not result:
                                    
-                                    db.mycursor.execute('insert into list_items (list_id, fruit_id, quantity, item_price) values(%s, %s, %s, %s)', [
+                                    db.mycursor.execute('insert into list_items (list_id, item_id, quantity, item_price) values(%s, %s, %s, %s)', [
                                                     id, int(id_choice), int(quantity), price * int(quantity)])
                                     
                                     db.mydb.commit()
@@ -108,10 +113,10 @@ def enter_elem_list(id):
                                     os.system("cls")
                                     break
                                 
-                                db.mycursor.execute('update list_items set quantity = quantity + %s where list_id = %s and fruit_id = %s', [int(quantity), id, int(id_choice)])
+                                db.mycursor.execute('update list_items set quantity = quantity + %s where list_id = %s and item_id = %s', [int(quantity), id, int(id_choice)])
                                 db.mydb.commit()
                                 
-                                db.mycursor.execute('update list_items set item_price = quantity * %s where list_id = %s and fruit_id = %s', [price, id, int(id_choice)])
+                                db.mycursor.execute('update list_items set item_price = quantity * %s where list_id = %s and item_id = %s', [price, id, int(id_choice)])
                                 db.mydb.commit()
                                 break
 
@@ -131,19 +136,19 @@ def enter_elem_list(id):
                         break
 
                     else:
-                        print("Enter A Valid Fruit ID")
+                        print("Enter A Valid Item ID")
                         time.sleep(1)
                         os.system("cls")
                         break
 
                 continue
             
-            if int(choice) == 3:
+            if int(choice) == 4:
                 print("Showing Price For All Items")
                 ShowPrices.all_price(id)
                 continue
             
-            if int(choice) == 4:
+            if int(choice) == 5:
                 
                 db.mycursor.execute('select * from list_items where list_id = %s', [id])
                 if not db.mycursor.fetchone():

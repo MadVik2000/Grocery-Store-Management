@@ -1,4 +1,4 @@
-import CreateList, Fruits, CheckList, Friends
+import CreateList, Categories, CheckList, Friends
 import Login
 import Signup
 import Password
@@ -32,7 +32,7 @@ if __name__ == "__main__":
                         
                     user_id = int(GetUserId.user_id(username))
                     while True:
-                        print("1. Check Out The Fruits Available")
+                        print("1. Check Out The Categories Available")
                         print("2. Create A New List")
                         print("3. Check Out An Old List")
                         print("4. Friends Section!")
@@ -48,7 +48,7 @@ if __name__ == "__main__":
                                 break
 
                             if int(cho) == 1:
-                                Fruits.show_fruits()
+                                Categories.show_category()
                                 continue
 
                             if int(cho) == 2:

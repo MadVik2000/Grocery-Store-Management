@@ -1,4 +1,3 @@
-import mysql.connector
 import re
 import db
 def check_user_id(id):

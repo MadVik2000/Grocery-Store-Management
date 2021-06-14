@@ -45,3 +45,11 @@ Added feature where a list should always have a name
 and many more...
 
 THIS IS A MAJOR MILESTONE WHERE BASIC PROJECT IS COMPLETED AND FROM HERE ADDITIONAL FUNCTIONALITIES WILL BE ADDED REGULARLY
+
+Update  14th June 2021
+
+Updated Database Model 
+Created Database For Whole Grocery Store Instead Of Just Fruits
+Removed Unnecessary Import Statements
+Made Changes To Code According To Database Changes
+Made A Category Section Where User Can View Items According To Their Categories

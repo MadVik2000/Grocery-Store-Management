@@ -1,4 +1,3 @@
-import mysql.connector
 import Encrypter,User,CodeGenerator,SendMail
 import os, time
 import GenerateSalt

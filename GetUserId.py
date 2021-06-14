@@ -1,4 +1,3 @@
-import mysql.connector
 import db
 
 def user_id(username):

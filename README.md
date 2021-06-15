@@ -53,3 +53,8 @@ Created Database For Whole Grocery Store Instead Of Just Fruits
 Removed Unnecessary Import Statements
 Made Changes To Code According To Database Changes
 Made A Category Section Where User Can View Items According To Their Categories
+
+
+Update 15th june 2021
+
+Added Phone Number Registration

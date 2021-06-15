@@ -4,6 +4,7 @@ import Signup
 import Password
 import GetUserId
 import os, time
+import db
 
 if __name__ == "__main__":
     os.system('cls')
@@ -20,6 +21,7 @@ if __name__ == "__main__":
             os.system("cls")
 
             if int(choice) == 4:
+                db.exit_program()
                 break
 
             if int(choice) == 1:

@@ -43,3 +43,14 @@ def check_mail(mail_id):
     
     print("Email Standards Not Met")
     return False
+
+
+def check_phone(phone_number):
+    
+    db.mycursor.execute('select email from users where phone_number = %s', [phone_number])
+    if db.mycursor.fetchone():
+        print("Phone Number Already Exists!")
+        return False
+
+    return True
+

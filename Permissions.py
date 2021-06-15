@@ -31,6 +31,8 @@ def change_permission(id):
                     
                     if not check_user_id(int(frnd_id)):
                         print("No User Exists With That ID")
+                        time.sleep(1)
+                        os.system('cls')
                         return
                     
                     if Friends.check_friend(id, frnd_id):
@@ -44,6 +46,8 @@ def change_permission(id):
                 while True:
                     print("Press Y for Enable and N for Disable")
                     cho = input().lower()
+                    os.system('cls')
+                    
                     if cho in ['y', 'n']:
                         db.mycursor.execute('update friends set permission = %s where friend_one = %s and friend_two = %s', [cho, id, frnd_id])
                         db.mydb.commit()

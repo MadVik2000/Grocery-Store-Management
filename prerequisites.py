@@ -4,7 +4,7 @@ import db
 import Items
 
 db.mycursor.execute(
-    "CREATE TABLE users(user_id INT AUTO_INCREMENT PRIMARY KEY,user_name VARCHAR(50) UNIQUE,email VARCHAR(50) UNIQUE,passwd VARCHAR(64), default_permission ENUM('y', 'n') DEFAULT 'n');")
+    "CREATE TABLE users(user_id INT AUTO_INCREMENT PRIMARY KEY,user_name VARCHAR(50) UNIQUE,email VARCHAR(50) UNIQUE, phone_number VARCHAR(25) UNIQUE, passwd VARCHAR(64), default_permission ENUM('y', 'n') DEFAULT 'n');")
 
 db.mycursor.execute("CREATE TABLE categories(category_id INT AUTO_INCREMENT PRIMARY KEY, category_name VARCHAR(50) UNIQUE);")
 

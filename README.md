@@ -55,6 +55,13 @@ Made Changes To Code According To Database Changes
 Made A Category Section Where User Can View Items According To Their Categories
 
 
-Update 15th june 2021
+Update 15th June 2021
 
 Added Phone Number Registration
+
+Update 16th June 2021
+
+Added Profile Page
+Added Environment Variables For Sending Sms And Email Just For Security Reasons, May Host Online Securely Sometime Later
+Added Feature Of Adding Phone Number If Registered Through Email And Vice Versa
+Added Offers Sections, More Details In Upcoming Updates

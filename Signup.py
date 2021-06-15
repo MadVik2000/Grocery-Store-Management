@@ -17,7 +17,7 @@ def signup():
             time.sleep(1)
             os.system("cls")
             
-            continue
+            break
         
         
         while True:
@@ -40,7 +40,7 @@ def signup():
                             time.sleep(1)
                             os.system("cls")
                             
-                            continue
+                            break
                         
                         if not CheckMail.check_mail(mail_id):
                             print("Email Can't Be Verified! User Not Registered!")
@@ -64,38 +64,39 @@ def signup():
                         break
                     
                 if int(inp) == 2:
-                    print("Please Enter Your Mobile Number")
-                    print("Don't Forget To Enter Your Country Codebefore your phone number")
-                    print("+91 for India and +1 for USA and many more")
-                    phone_number = input()
-                    os.system('cls')
-                    
-                    if not User.check_phone(phone_number):
-                        time.sleep(1)
-                        os.system("cls")
+                    while True:
+                        print("Please Enter Your Mobile Number")
+                        print("Don't Forget To Enter Your Country Code before your phone number")
+                        print("+91 for India and +1 for USA and many more")
+                        phone_number = input()
+                        os.system('cls')
+                        
+                        if not User.check_phone(phone_number):
+                            time.sleep(1)
+                            os.system("cls")
 
-                        continue
+                            break
+                        
+                        if not CheckSms.check_sms(phone_number):
+                            print("Phone Number Can't Be Verified! User Not Registered!")
+                            time.sleep(1)
+                            os.system("cls")
+
+                            break
                     
-                    if not CheckSms.check_sms(phone_number):
-                        print("Phone Number Can't Be Verified! User Not Registered!")
+                        passwd = getpass.getpass('Please Enter Your Password\nNote That Your Password Would Not Be Visible While Typing\n')
+                        os.system("cls")
+                        salt = GenerateSalt.generate_salt(username)
+
+                        e_pass = Encrypter.give_hex(passwd, salt)
+
+                        db.mycursor.execute("insert into users (user_name, phone_number, passwd) values (%s, %s, %s)", [username, phone_number, e_pass])
+                        db.mydb.commit()
+                        print("You've Successfully Signed Up!\nPlease Login To Proceed!")
                         time.sleep(1)
                         os.system("cls")
 
                         break
-                
-                    passwd = getpass.getpass('Please Enter Your Password\nNote That Your Password Would Not Be Visible While Typing\n')
-                    os.system("cls")
-                    salt = GenerateSalt.generate_salt(username)
-
-                    e_pass = Encrypter.give_hex(passwd, salt)
-
-                    db.mycursor.execute("insert into users (user_name, phone_number, passwd) values (%s, %s, %s)", [username, phone_number, e_pass])
-                    db.mydb.commit()
-                    print("You've Successfully Signed Up!\nPlease Login To Proceed!")
-                    time.sleep(1)
-                    os.system("cls")
-
-                    break
                 
                 break
             

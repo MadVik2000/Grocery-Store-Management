@@ -1,11 +1,7 @@
 import smtplib
-import getpass
 import os
 
 def send_mail(mail_id, code):
-    my_mail = 'madvik143@gmail.com'
-        
-    my_pass = getpass.getpass("Enter Your Mail Password\nNote That Your Password Would Not Be Visible While Typing\n")
     os.system("cls")
 
     message = (
@@ -13,14 +9,12 @@ def send_mail(mail_id, code):
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(my_mail, my_pass)
+    server.login(os.environ["SENDING_MAIL"], os.environ["SENDING_MAIL_PASSWORD"])
 
-    server.sendmail(my_mail, mail_id, message)
+    server.sendmail(os.environ["SENDING_MAIL"], mail_id, message)
     
     
 def verify_mail(mail_id, code):
-    my_mail = 'madvik143@gmail.com'
-    my_pass = getpass.getpass("Enter Your Mail Password\nNote That Your Password Would Not Be Visible While Typing\n")
     os.system('cls')
 
     message = (
@@ -28,6 +22,6 @@ def verify_mail(mail_id, code):
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(my_mail, my_pass)
+    server.login(os.environ["SENDING_MAIL"], os.environ["SENDING_MAIL_PASSWORD"])
 
-    server.sendmail(my_mail, mail_id, message)
+    server.sendmail(os.environ["SENDING_MAIL"], mail_id, message)

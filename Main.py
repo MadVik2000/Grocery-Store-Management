@@ -5,6 +5,7 @@ import Password
 import GetUserId
 import os, time
 import db
+import Profile
 
 if __name__ == "__main__":
     os.system('cls')
@@ -38,15 +39,16 @@ if __name__ == "__main__":
                         print("2. Create A New List")
                         print("3. Check Out An Old List")
                         print("4. Friends Section!")
-                        print("5. Exit")
+                        print("5. Profile")
+                        print("6. Exit")
 
                         cho = input("Enter Your Choice")
                         os.system('cls')
-                        if cho.isnumeric() and int(cho) in range(1, 6):
+                        if cho.isnumeric() and int(cho) in range(1, 7):
                             
                             os.system("cls")
 
-                            if int(cho) == 5:
+                            if int(cho) == 6:
                                 break
 
                             if int(cho) == 1:
@@ -63,6 +65,10 @@ if __name__ == "__main__":
 
                             if int(cho) == 4:
                                 Friends.main(user_id)
+                                continue
+                            
+                            if int(cho) == 5:
+                                Profile.show_profile(user_id)
                                 continue
                             
                         else:

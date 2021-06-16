@@ -54,7 +54,7 @@ def show_profile(id):
                         if User.check_pass(profile[0], e_pass):
                             
                             db.mycursor.execute("update users set phone_number = %s where user_id = %s", [mail_id, id])
-                            db.mydb.commit()
+                            
 
                             print(f"You Have Added Your Email Address Successfully!!")
                             time.sleep(1)
@@ -117,7 +117,7 @@ def show_profile(id):
                         if User.check_pass(profile[0], e_pass):
                             
                             db.mycursor.execute("update users set phone_number = %s where user_id = %s", [phone_number, id])
-                            db.mydb.commit()
+                            
 
                             print(f"You Have Added Your Phone Number Successfully!!")
                             time.sleep(1)
@@ -142,4 +142,3 @@ def show_profile(id):
                 print("Wrong Choice!")
                 time.sleep(1)
                 os.system('cls')
-

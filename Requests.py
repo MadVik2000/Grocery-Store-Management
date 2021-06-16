@@ -115,7 +115,7 @@ def send_request(id):
                 
                 db.mycursor.execute('insert into requests (to_id, from_id) values (%s, %s);', [int(send_id), id])
 
-                db.mydb.commit()
+                
                 print("Friend Request Send!")
                 time.sleep(1)
                 os.system("cls")
@@ -160,7 +160,7 @@ def accept_request(id):
                              id, int(choice), one_permission])
             db.mycursor.execute('delete from requests where to_id = %s and from_id = %s', [
                              id, int(choice)])
-            db.mydb.commit()
+            
             break
 
         print("Wrong User ID!")
@@ -184,7 +184,7 @@ def reject_request(id):
 
             db.mycursor.execute('delete from requests where to_id = %s and from_id = %s', [
                              id, int(choice)])
-            db.mydb.commit()
+            
             break
 
         print("Wrong User ID!")

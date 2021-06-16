@@ -50,7 +50,7 @@ def change_permission(id):
                     
                     if cho in ['y', 'n']:
                         db.mycursor.execute('update friends set permission = %s where friend_one = %s and friend_two = %s', [cho, id, frnd_id])
-                        db.mydb.commit()
+                        
                         print("Permission Updated!")
                         time.sleep(1)
                         os.system("cls")
@@ -72,10 +72,10 @@ def change_permission(id):
                     
                     if cho in ['y', 'n']:
                         db.mycursor.execute('update friends set permission = %s where friend_one = %s', [cho, id])
-                        db.mydb.commit()
+                        
                         
                         db.mycursor.execute('update users set default_permission = %s where user_id = %s', [cho, id])
-                        db.mydb.commit()
+                        
                         print("Permissions Updated Successfully!")
                         time.sleep(1)
                         os.system("cls")

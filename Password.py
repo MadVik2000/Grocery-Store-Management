@@ -108,7 +108,7 @@ def change_password(username):
     e_pass = Encrypter.give_hex(passwd, salt)
 
     db.mycursor.execute('update users set passwd = %s where user_name = %s', [e_pass, username])
-    db.mydb.commit()
+    
     print("Password Changed Successfully!")
     print("Please Log In To Proceed!")
     time.sleep(1)

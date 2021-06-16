@@ -65,3 +65,10 @@ Added Profile Page
 Added Environment Variables For Sending Sms And Email Just For Security Reasons, May Host Online Securely Sometime Later
 Added Feature Of Adding Phone Number If Registered Through Email And Vice Versa
 Added Offers Sections, More Details In Upcoming Updates
+
+Update 16th June 2021
+Added Offers Sections To Check Frequently Buyed Items To Apply Offers On.
+Only Available If Transactions are above 50
+Model Changes
+Added Autocommits
+Major Bug Fixes

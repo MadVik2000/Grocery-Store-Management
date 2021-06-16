@@ -56,7 +56,7 @@ def signup():
                         e_pass = Encrypter.give_hex(passwd, salt)
 
                         db.mycursor.execute("insert into users (user_name, email, passwd) values (%s, %s, %s)", [username, mail_id, e_pass])
-                        db.mydb.commit()
+                        
                         print("You've Successfully Signed Up!\nPlease Login To Proceed!")
                         time.sleep(1)
                         os.system("cls")
@@ -91,7 +91,7 @@ def signup():
                         e_pass = Encrypter.give_hex(passwd, salt)
 
                         db.mycursor.execute("insert into users (user_name, phone_number, passwd) values (%s, %s, %s)", [username, phone_number, e_pass])
-                        db.mydb.commit()
+                        
                         print("You've Successfully Signed Up!\nPlease Login To Proceed!")
                         time.sleep(1)
                         os.system("cls")

@@ -21,6 +21,8 @@ db.mycursor.execute(
 db.mycursor.execute(
     "CREATE TABLE friends(friends_id INT AUTO_INCREMENT PRIMARY KEY, friend_one INT REFERENCES users(user_id),friend_two INT REFERENCES users(user_id),permission ENUM('y', 'n'));")
 
+db.mycursor.execute("CREATE TABLE offers(offers_id INT AUTO_INCREMENT PRIMARY KEY, item_id1 INT, item_id2 INT);")
+
 for item in Items.ITEMS:
     db.mycursor.execute('insert into categories (category_name) value(%s)', [item])
     
@@ -52,4 +54,4 @@ db.mycursor.executemany(myquery,Items.BAKINGDESSERTPREPERATION)
 
 db.mycursor.executemany(myquery, Items.OILGHEE)
     
-db.mydb.commit()
+

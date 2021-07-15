@@ -125,6 +125,7 @@ def send_request(id):
             print("User Doesn't Exist!")
             time.sleep(1)
             os.system("cls")
+            break
             
             
         print("Please Enter A Valid User Id")

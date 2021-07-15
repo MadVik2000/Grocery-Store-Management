@@ -88,7 +88,7 @@ def enter_elem_list(id):
                         
                         db.mycursor.execute('select * from offers where item_id1 = %s', [int(id_choice)])
                         res = db.mycursor.fetchone()
-                        if res[0]:
+                        if res and res[0]:
                             if not res[2]:
                                 print("This Item Is At A Discounted Rate Of 20 Percent! You'll get 20 percent off it!")
                                 time.sleep(1)
@@ -121,7 +121,7 @@ def enter_elem_list(id):
                                     db.mycursor.execute('select * from offers where %s in (item_id1, item_id2);', [int(id_choice)])
                                     res = db.mycursor.fetchall()
                                     
-                                    if res[0]:
+                                    if res and res[0]:
                                         while True:
                                             print("This Item is Present with other item at a discounted rate of 25 percent! Do You Want To Buy The Combo?")
                                             cho = input("Press Y for yes and N for no!").lower()

@@ -1,5 +1,5 @@
 import db
-import time,os
+import os
 
 db.mycursor.execute('SELECT COUNT(*) FROM lists l JOIN (SELECT list_id, COUNT(*) FROM list_items GROUP BY list_id) my ON l.list_id=my.list_id')
 
@@ -63,22 +63,26 @@ if total_transactions > 50:
 def show_offers():
     db.mycursor.execute('select * from offers;')
     offers = db.mycursor.fetchall()
+    
+    if not offers:
+        print("No Offers Currently Available\n\n\n!")
+        
+    else:
+        for offer in offers:
+            db.mycursor.execute(
+                'select item_name from items where item_id = %s;', [offer[1]])
+            item1_name = db.mycursor.fetchone()[0]
 
-    for offer in offers:
-        db.mycursor.execute(
-            'select item_name from items where item_id = %s;', [offer[1]])
-        item1_name = db.mycursor.fetchone()[0]
+            if not offer[2]:
+                print(f"{offer[0]}. {item1_name} at a discounted rate of 20 percent.\n")
+                continue
 
-        if not offer[2]:
-            print(f"{offer[0]}. {item1_name} at a discounted rate of 20 percent.\n")
-            continue
+            db.mycursor.execute(
+                'select item_name from items where item_id = %s;', [offer[2]])
+            item2_name = db.mycursor.fetchone()[0]
 
-        db.mycursor.execute(
-            'select item_name from items where item_id = %s;', [offer[2]])
-        item2_name = db.mycursor.fetchone()[0]
-
-        print(
-            f"{offer[0]}. {item1_name} and {item2_name} together at a discount rate of 25 percent.\n")
+            print(
+                f"{offer[0]}. {item1_name} and {item2_name} together at a discount rate of 25 percent.\n")
         
         
     input("Press Enter To Continue")

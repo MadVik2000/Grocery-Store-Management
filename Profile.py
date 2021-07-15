@@ -75,6 +75,13 @@ def show_profile(id):
                 
                     break
             
+                else:
+                    print("User Rejected!")
+                    time.sleep(1)
+                    os.system('cls')
+                
+                break
+                
             else:
                 print("Wrong Choice!")
                 time.sleep(1)
@@ -135,7 +142,13 @@ def show_profile(id):
                             print(f"Wrong PassWord! {tries} More Tries Left")
                             time.sleep(1)
                             os.system("cls")
+                
+                else:
+                    print("User Rejected!")
+                    time.sleep(1)
+                    os.system('cls')
                     
+                
                 break
 
             else:

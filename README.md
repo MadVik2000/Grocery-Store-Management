@@ -72,3 +72,6 @@ Only Available If Transactions are above 50
 Model Changes
 Added Autocommits
 Major Bug Fixes
+
+Added Project Use Case Diagram, ER Diagram And Data Flow Diagram
+Major Bug Fixes

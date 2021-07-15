@@ -160,6 +160,8 @@ def enter_elem_list(id):
                                                     break
                                                 
                                                 else:
+                                                    db.mycursor.execute('insert into list_items (list_id, item_id, quantity, item_price) values(%s, %s, %s, %s)', [
+                                                        id, int(id_choice), int(quantity), price*int(quantity)])
                                                     break
                                             
                                             else:

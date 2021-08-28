@@ -18,7 +18,7 @@ def verify_mail(mail_id, code):
     os.system('cls')
 
     message = (
-        f"Hey, You've Requested To Create An Account On Grocery Store Management System.\nPlease Enter This Code To Register Yourself:\n {code}\n\n Do Not Share This Code With Anyone Else! Ignore If You Haven't Requested To Register")
+        f"Hey, You've Requested To Create An Account On Grocery-Mania.\nPlease Enter This Code To Register Yourself:\n {code}\n\n Do Not Share This Code With Anyone Else! Ignore If You Haven't Requested To Register")
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()

@@ -5,7 +5,7 @@ client = Client(os.environ["TWILIO_ACCOUNT_SID"], os.environ["TWILIO_AUTH_TOKEN"
 
 def send_sms(phone_number, code):
     message = (
-    f"Hey, You've Requested To Create An Account On Grocery Management System.\nPlease Enter This Code To Register Yourself:\n {code}\n\n Do Not Share This Code With Anyone Else! Ignore If You Haven't Requested To Register")
+    f"Hey, You've Requested To Create An Account On Grocery-Mania.\nPlease Enter This Code To Register Yourself:\n {code}\n\n Do Not Share This Code With Anyone Else! Ignore If You Haven't Requested To Register")
 
     client.messages.create(
         to= phone_number,

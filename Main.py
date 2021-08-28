@@ -9,7 +9,7 @@ import Profile
 
 if __name__ == "__main__":
     os.system('cls')
-    print("Welcome To The List Management System!")
+    print("Welcome To The Grocery-Mania!")
     while True:
         print("1. Login")
         print("2. Signup")
